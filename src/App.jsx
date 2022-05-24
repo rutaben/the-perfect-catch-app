@@ -1,9 +1,8 @@
-import React from 'react';
-import MovieInput from './components/movie-input';
+import MoviesPage from './pages/movies-page';
 
 const App = () => {
   return (
-    <MovieInput />
+    <MoviesPage />
   );
 }
 
