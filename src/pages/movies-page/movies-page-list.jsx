@@ -6,7 +6,6 @@ import {
 } from '@mui/material';
 
 const MoviesPageList = ({ movies }) => {
-  console.log(movies)
   return (
     <Box>
       <Typography>Čia bus filmai</Typography>
