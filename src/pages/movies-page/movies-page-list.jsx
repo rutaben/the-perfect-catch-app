@@ -12,7 +12,7 @@ const MoviesPageList = ({ movies }) => {
       <List>
         {movies.map((item) => 
           <ListItem>{item.title}</ListItem>
-        )};
+        )}
       </List>
     </Box>
   )
