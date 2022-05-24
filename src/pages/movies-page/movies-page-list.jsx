@@ -6,12 +6,13 @@ import {
 } from '@mui/material';
 
 const MoviesPageList = ({ movies }) => {
+  console.log(movies)
   return (
     <Box>
       <Typography>Čia bus filmai</Typography>
       <List>
         {movies.map((item) => 
-          <ListItem>{item.title}</ListItem>
+          <ListItem key={item.title}>{item.title}</ListItem>
         )}
       </List>
     </Box>
