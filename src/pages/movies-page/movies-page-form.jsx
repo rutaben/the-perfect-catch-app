@@ -48,13 +48,14 @@ const MoviesPageForm = () => {
 
   return (
   <Container>
-    <Box
+    <Box 
     component="form"
     onSubmit={handleSubmit}
+    sx={{ my: 5, display: 'flex', flexDirection: 'column' }}
     >
       <TextField 
         name="title"
-        label="Enter movie title"
+        label="Enter movie title..."
         onChange={handleChange}
         value={values.title}
         onBlur={handleBlur}
@@ -63,8 +64,9 @@ const MoviesPageForm = () => {
         disabled={isSubmitting}
         variant="outlined"
         fullWidth
+        sx={{ my: 5 }}
       />
-      <ContainedButton title="Pridėti" type="submit"/>
+      <ContainedButton title="Pridėti" type="submit" />
     </Box>
     <MoviesPageList movies={moviesList} />
   </Container>
