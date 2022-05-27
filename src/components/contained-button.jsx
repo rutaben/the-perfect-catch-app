@@ -15,7 +15,8 @@ const ContainedButton = ({ title, type, fullWidth }) => {
       variant="contained"
       type={type}
       fullWidth={fullWidth}
-      sx={{ px: 10, py: 1, mx: 'auto' }}>
+      sx={{ px: 10, py: 1, mx: 'auto' }}
+    >
       {title}
     </StyledButton>
   );

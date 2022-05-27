@@ -13,7 +13,8 @@ const LoginPage = () => {
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center'
-          }}>
+          }}
+        >
           <Typography variant="h3" sx={{ mb: 3 }}>
             The Perfect Catch
           </Typography>
@@ -46,7 +47,8 @@ const LoginPage = () => {
           <ContainedButton
             title={<PlainLink linkTo={'/favorite-movies'} linkTitle="Login" />}
             type="submit"
-            fullWidth="true"></ContainedButton>
+            fullWidth="true"
+          />
         </Grid>
       </Box>
     </Container>
