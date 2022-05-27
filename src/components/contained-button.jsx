@@ -1,7 +1,4 @@
-import {
-  Button,
-  styled,
-} from '@mui/material';
+import { Button, styled } from '@mui/material';
 
 const StyledButton = styled(Button)(({ theme }) => ({
   fontSize: '1rem',
@@ -9,18 +6,14 @@ const StyledButton = styled(Button)(({ theme }) => ({
   backgroundColor: theme.palette.text.primary,
   color: theme.palette.text.light,
   '&:hover': {
-    backgroundColor: theme.palette.secondary.main,
-  },
+    backgroundColor: theme.palette.secondary.main
+  }
 }));
 
-const ContainedButton = ({title, type}) => {
+const ContainedButton = ({ title, type }) => {
   return (
-    <StyledButton
-      variant="contained"
-      type={type}
-      sx={{ px: 4, py: 1, mx: 'auto' }}
-      >
-        {title}
+    <StyledButton variant="contained" type={type} sx={{ px: 4, py: 1, mx: 'auto' }}>
+      {title}
     </StyledButton>
   );
 };
