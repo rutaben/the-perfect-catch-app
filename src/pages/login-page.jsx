@@ -31,24 +31,27 @@ const LoginPage = () => {
               id="email"
             />
           </Grid>
-          <Grid item xs={12} sx={{ mb: 4 }}>
+          <Grid item xs={12}>
             <TextField
               required
               variant="outlined"
               fullWidth
+              type="password"
               name="password"
               label="Password"
-              type="password"
               id="password"
             />
           </Grid>
-        </Grid>
-        <Grid sx={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
-          <ContainedButton
-            title={<PlainLink linkTo={'/favorite-movies'} linkTitle="Login" />}
-            type="submit"
-            fullWidth="true"
-          />
+          <Grid item xs={12} sx={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
+            <ContainedButton
+              title={<PlainLink linkTo={'/favorite-movies'} linkTitle="Login" />}
+              type="submit"
+              fullWidth="true"
+            />
+          </Grid>
+          <Grid item xs={12}>
+            <PlainLink linkTo={'/register'} linkTitle="Don't have an account? Register here" />
+          </Grid>
         </Grid>
       </Box>
     </Container>
