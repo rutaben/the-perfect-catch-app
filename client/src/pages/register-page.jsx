@@ -15,8 +15,8 @@ const RegisterPage = () => {
       title="Create an account"
       lightLinkTo="/favorite-movies"
       lightLinkTitle="Sign up"
-      darkLinkTo="/register"
-      darkLinkTitle="Don't have an account? Register here."
+      darkLinkTo="/"
+      darkLinkTitle="Already have an account? Login here."
     />
   );
 };
