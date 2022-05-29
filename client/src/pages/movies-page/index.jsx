@@ -9,7 +9,8 @@ const MoviesListPage = () => {
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center'
-      }}>
+      }}
+    >
       <Typography variant="h4" sx={{ mt: 10 }}>
         Hi, Username!
       </Typography>

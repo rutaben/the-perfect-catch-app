@@ -14,14 +14,16 @@ const MoviesPageList = ({ movies }) => {
               my: 2,
               py: 0.5,
               borderRadius: 2
-            }}>
+            }}
+          >
             <Box
               sx={{
                 width: '100%',
                 display: 'flex',
                 justifyContent: 'space-between',
                 alignItems: 'center'
-              }}>
+              }}
+            >
               <Typography sx={{ textTransform: 'capitalize' }}>{item.title}</Typography>
               <IconButton sx={{ color: '#ff0028' }}>
                 <DeleteIcon />
