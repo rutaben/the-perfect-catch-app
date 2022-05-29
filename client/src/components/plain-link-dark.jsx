@@ -4,11 +4,14 @@ import { Link } from 'react-router-dom';
 
 const StyledLink = styled(Link)(({ theme }) => ({
   textDecoration: 'none',
-  color: theme.palette.primary.main
+  color: theme.palette.secondary.dark,
+  '&:hover': {
+    textDecoration: 'underline'
+  }
 }));
 
-const PlainLink = ({ linkTo, linkTitle }) => {
+const PlainLinkDark = ({ linkTo, linkTitle }) => {
   return <StyledLink to={linkTo}>{linkTitle}</StyledLink>;
 };
 
-export default PlainLink;
+export default PlainLinkDark;
