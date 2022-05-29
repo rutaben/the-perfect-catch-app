@@ -6,10 +6,16 @@ const loginFormData = [
   { id: 'password', name: 'password', label: 'Password', type: 'password' }
 ];
 
+const initialValues = {
+  email: '',
+  password: ''
+};
+
 const LoginPage = () => {
   return (
     <AuthenticationForm
       textFieldData={loginFormData}
+      initialValues={initialValues}
       title="Login"
       lightLinkTo="/favorite-movies"
       lightLinkTitle="Login"

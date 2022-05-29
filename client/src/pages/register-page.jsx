@@ -8,10 +8,18 @@ const registerFormData = [
   { id: 'password', name: 'password', label: 'Password', type: 'password' }
 ];
 
+const initialValues = {
+  firstName: '',
+  lastName: '',
+  email: '',
+  password: ''
+};
+
 const RegisterPage = () => {
   return (
     <AuthenticationForm
       textFieldData={registerFormData}
+      initialValues={initialValues}
       title="Create an account"
       lightLinkTo="/favorite-movies"
       lightLinkTitle="Sign up"
