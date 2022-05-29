@@ -45,7 +45,8 @@ const MoviesPageForm = () => {
           my: 5,
           display: 'flex',
           flexDirection: 'column'
-        }}>
+        }}
+      >
         <TextField
           name="title"
           label="Enter movie title..."
