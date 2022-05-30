@@ -23,14 +23,14 @@ const register = async (req, res) => {
 
     const hashedPassword = await hashAndSaltPassword(password);
     await UserModel.findByIdAndUpdate(userDocument.id, {
-      password: hashedPassword,
+      password: hashedPassword
     });
   } catch (error) {
     res.status(400).json({
       message: error.message
     });
   }
-}
+};
 
 const login = async (req, res) => {
   const { email, password } = req.body;
@@ -39,9 +39,10 @@ const login = async (req, res) => {
     const equalPasswords = await comparePasswords(password, userDocument.password);
     if (equalPasswords) {
       const user = new UserViewModel(userDocument);
-      res.status(200).json({ user, token: generateToken({ email }), });
+      res.status(200).json({ user, token: generateToken({ email }) });
+    } else {
+      res.status(401).json({ message: 'Wrong password' });
     }
-    else { res.status(401).json({ message: 'Wrong password' })}
   } catch (error) {
     res.status(404).json({ message: 'There is no account associated with this email address' });
   }
@@ -51,29 +52,30 @@ const auth = async (req, res) => {
   const { token } = req.body;
   try {
     const { email } = jwt.verify(token, process.env.JWT_SECRET);
-    const userDocument = await (await UserModel.findOne({ email }))
+    const userDocument = await await UserModel.findOne({ email });
     const user = new UserViewModel(userDocument);
     res.status(200).json(user);
   } catch (error) {
     res.status(403).json({ message: 'Invalid token' });
   }
-}
+};
 
 const checkEmail = async (req, res) => {
   const { email } = req.query;
   if (!email) {
     res.status(400).json({
-      message: 'No email provided',
+      message: 'No email provided'
     });
+    
     return;
   }
   const userDocument = await UserModel.findOne({ email });
   res.status(200).json({ available: !userDocument });
-}
+};
 
 module.exports = {
   register,
   login,
   auth,
-  checkEmail,
+  checkEmail
 };
