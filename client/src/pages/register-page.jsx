@@ -5,14 +5,16 @@ const registerFormData = [
   { id: 'firstName', name: 'firstName', label: 'First Name', type: 'text' },
   { id: 'lastName', name: 'lastName', label: 'Last Name', type: 'text' },
   { id: 'email', name: 'email', label: 'Email', type: 'email' },
-  { id: 'password', name: 'password', label: 'Password', type: 'password' }
+  { id: 'password', name: 'password', label: 'Password', type: 'password' },
+  { id: 'repeatPassword', name: 'repeatPassword', label: 'Repeat password', type: 'password' }
 ];
 
 const initialValues = {
   firstName: '',
   lastName: '',
   email: '',
-  password: ''
+  password: '',
+  repeatPassword: ''
 };
 
 const RegisterPage = () => {
