@@ -4,6 +4,9 @@ const Mongoose = require('mongoose');
 require('dotenv').config();
 const cors = require('cors');
 
+const authenticationRouter = require('./routers/authentication-router');
+const userRouter = require('./routers/user-router');
+
 const server = express();
 const { SERVER_DOMAIN, SERVER_PORT, DB_CONNECTION } = process.env;
 
@@ -15,6 +18,9 @@ const corsOptions = {
 server.use(morgan('tiny'));
 server.use(cors(corsOptions));
 server.use(express.json());
+
+server.use('/api/authentication', authenticationRouter);
+server.use('/api/users', userRouter);
 
 server.listen(SERVER_PORT, () => {
   console.log(`Page is running on http://${SERVER_DOMAIN}:${SERVER_PORT}/`);
