@@ -6,6 +6,6 @@ const generateJwt = ({ email }) => {
   }
 
   return null;
-}
+};
 
 module.exports = generateJwt;
