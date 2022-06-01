@@ -33,7 +33,7 @@ const validationSchema = yup.object({
     .required('Password is required')
 });
 
-const AuthenticationForm = ({
+const AuthForm = ({
   textFieldData,
   initialValues,
   title,
@@ -90,4 +90,4 @@ const AuthenticationForm = ({
   );
 };
 
-export default AuthenticationForm;
+export default AuthForm;

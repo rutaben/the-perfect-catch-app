@@ -1,5 +1,5 @@
 import React from 'react';
-import AuthenticationForm from '../components/authentication-form';
+import AuthForm from '../components/auth-form';
 
 const loginFormData = [
   { id: 'email', name: 'email', label: 'Email', type: 'email' },
@@ -13,7 +13,7 @@ const initialValues = {
 
 const LoginPage = () => {
   return (
-    <AuthenticationForm
+    <AuthForm
       textFieldData={loginFormData}
       initialValues={initialValues}
       title="Login"
