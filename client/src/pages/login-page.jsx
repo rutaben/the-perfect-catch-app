@@ -11,6 +11,10 @@ const initialValues = {
   password: ''
 };
 
+const handleSubmit = async ({ email, password }) => {
+  console.log(email, password);
+};
+
 const LoginPage = () => {
   return (
     <AuthForm
@@ -21,6 +25,7 @@ const LoginPage = () => {
       lightLinkTitle="Login"
       darkLinkTo="/register"
       darkLinkTitle="Don't have an account? Register here."
+      onSubmit={handleSubmit}
     />
   );
 };

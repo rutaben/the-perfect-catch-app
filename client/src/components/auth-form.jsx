@@ -16,13 +16,8 @@ const validationSchema = yup.object({
   firstName: yup
     .string()
     .min(2, 'First Name must be no shorter than 2 letters')
-    .max(32, 'First Name must be no longer than 32 letters')
-    .required('First Name is required'),
-  lastName: yup
-    .string()
-    .min(2, 'At least 2 letters')
-    .max(32, 'Most 32 letters')
-    .required('Last Name is required'),
+    .max(32, 'First Name must be no longer than 32 letters'),
+  lastName: yup.string().min(2, 'At least 2 letters').max(32, 'Most 32 letters'),
   email: yup.string().required('Email is required').email('Email is invalid'),
   password: yup
     .string()
@@ -40,17 +35,33 @@ const AuthForm = ({
   lightLinkTo,
   lightLinkTitle,
   darkLinkTo,
-  darkLinkTitle
+  darkLinkTitle,
+  onSubmit
 }) => {
-  const { values, handleChange, handleSubmit, handleBlur, errors, touched, isSubmitting } =
-    useFormik({
-      initialValues,
-      validationSchema
-    });
+  const {
+    values,
+    handleChange,
+    handleSubmit,
+    handleBlur,
+    errors,
+    touched,
+    dirty,
+    isSubmitting,
+    isValid
+  } = useFormik({
+    initialValues,
+    validationSchema,
+    onSubmit
+  });
+
+  const handleAsyncSubmit = (event) => {
+    if (isSubmitting) event.preventDefault();
+    else handleSubmit(event);
+  };
 
   return (
-    <Container maxWidth="xs">
-      <Box component="form" onSubmit={handleSubmit} sx={{ mt: 10 }}>
+    <Container maxWidth="xs" component="main">
+      <Box component="form" onSubmit={handleAsyncSubmit} sx={{ mt: 10 }}>
         <StyledBox sx={{ mb: 3 }}>
           <Typography variant="h5" sx={{ mb: 3 }}>
             {title}
@@ -79,6 +90,7 @@ const AuthForm = ({
             <ContainedButton
               title={<PlainLinkLight linkTo={lightLinkTo} linkTitle={lightLinkTitle} />}
               type="submit"
+              disabled={!dirty || !isValid}
             />
           </Grid>
           <Grid item xs={12}>
