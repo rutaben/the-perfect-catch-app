@@ -20,8 +20,8 @@
     "react/jsx-props-no-spreading": 0,
     "quote-props": [2, "as-needed"],
     "padding-line-between-statements": [
-    "error",
-    { "blankLine": "always", "prev": "*", "next": "return" }
+      "error",
+      { "blankLine": "always", "prev": "*", "next": "return" }
     ]
   }
 }

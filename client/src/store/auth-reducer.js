@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const initState = {
+const initialState = {
   loggedIn: null,
   user: null,
   redirectTo: null
@@ -8,7 +8,7 @@ const initState = {
 
 const authSlice = createSlice({
   name: 'auth',
-  initState,
+  initialState,
   reducers: {
     authFailed(state) {
       state.loggedIn = false;
