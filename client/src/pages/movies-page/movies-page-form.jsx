@@ -28,9 +28,7 @@ const initialValues = { title: '' };
 
 const MoviesPageForm = ({ genres }) => {
   const [moviesList, setmoviesList] = useState([]);
-  console.log(moviesList);
   const [genresList, setGenresList] = useState([]);
-  console.log(genresList);
 
   const handleGenresChange = (e) => {
     let currGenresListCopy = [...genresList];

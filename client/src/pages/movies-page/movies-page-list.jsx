@@ -7,7 +7,6 @@ import DeleteIcon from '@mui/icons-material/Delete';
 
 const MoviesPageList = () => {
   const [moviesList, setMoviesList] = useState([]);
-  console.log(moviesList);
 
   useEffect(() => {
     (async () => {
