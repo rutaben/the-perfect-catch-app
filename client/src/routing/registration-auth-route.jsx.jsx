@@ -1,15 +1,15 @@
 import React from 'react';
 import { Navigate } from 'react-router-dom';
-import LoginPage from '../pages/login-page';
+import RegisterPage from '../pages/register-page';
 
-const AuthRoute = () => {
+const RegistrationAuthRoute = () => {
   const authState = JSON.parse(localStorage.getItem('auth'));
 
   if (!authState || authState.loggedIn === false) {
-    return <LoginPage />;
+    return <RegisterPage />;
   } else {
     return <Navigate to="/favorite-movies" replace />;
   }
 };
 
-export default AuthRoute;
+export default RegistrationAuthRoute;

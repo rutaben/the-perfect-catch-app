@@ -1,5 +1,6 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { login } from '../store/auth-reducer';
 import AuthService from '../services/auth-service';
 import AuthForm from '../components/auth-form';
@@ -22,7 +23,7 @@ const initialValues = {
 
 const RegisterPage = () => {
   const dispatch = useDispatch();
-  // let navigate = useNavigate();
+  let navigate = useNavigate();
 
   const handleSubmit = async ({ firstName, lastName, email, password, repeatPassword }) => {
     try {
@@ -33,10 +34,8 @@ const RegisterPage = () => {
         password,
         repeatPassword
       });
-      console.log(newUser);
-      const loginSuccessAction = login({ newUser });
-      dispatch(loginSuccessAction);
-      // navigate('/favorite-movies');
+      dispatch(login({ newUser }));
+      navigate('/favorite-movies');
     } catch (error) {
       alert(error.message);
     }
