@@ -16,7 +16,7 @@ const authSlice = createSlice({
     login(state, { payload }) {
       state.loggedIn = true;
       state.user = payload.user;
-      SessionService.set('auth', state);
+      localStorage.setItem('auth', JSON.stringify(state));
     },
     logout(state) {
       state.loggedIn = false;
