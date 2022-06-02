@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import AuthService from '../services/auth-service';
 import { login } from '../store/auth-reducer';
 import AuthForm from '../components/auth-form';
+import { useNavigate } from 'react-router-dom';
 
 const loginFormData = [
   { id: 'email', name: 'email', label: 'Email', type: 'email' },
@@ -16,6 +17,7 @@ const initialValues = {
 
 const LoginPage = () => {
   const dispatch = useDispatch();
+  let navigate = useNavigate();
 
   const handleSubmit = async ({ email, password }) => {
     try {
@@ -25,6 +27,7 @@ const LoginPage = () => {
       });
       const loginSuccessAction = login({ user });
       dispatch(loginSuccessAction);
+      navigate('/favorite-movies');
     } catch (error) {
       alert(error.message);
     }
@@ -35,8 +38,6 @@ const LoginPage = () => {
       textFieldData={loginFormData}
       initialValues={initialValues}
       title="Login"
-      lightLinkTo="/favorite-movies"
-      lightLinkTitle="Login"
       darkLinkTo="/register"
       darkLinkTitle="Don't have an account? Register here."
       onSubmit={handleSubmit}

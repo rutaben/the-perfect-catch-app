@@ -3,7 +3,6 @@ import { Container, Box, Typography, Grid, TextField, styled } from '@mui/materi
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 import ContainedButton from './contained-button';
-import PlainLinkLight from './plain-link-light';
 import PlainLinkDark from './plain-link-dark';
 
 const StyledBox = styled(Box)(() => ({
@@ -28,31 +27,13 @@ const validationSchema = yup.object({
     .required('Password is required')
 });
 
-const AuthForm = ({
-  textFieldData,
-  initialValues,
-  title,
-  lightLinkTo,
-  lightLinkTitle,
-  darkLinkTo,
-  darkLinkTitle,
-  onSubmit
-}) => {
-  const {
-    values,
-    handleChange,
-    handleSubmit,
-    handleBlur,
-    errors,
-    touched,
-    dirty,
-    isSubmitting,
-    isValid
-  } = useFormik({
-    initialValues,
-    validationSchema,
-    onSubmit
-  });
+const AuthForm = ({ textFieldData, initialValues, title, darkLinkTo, darkLinkTitle, onSubmit }) => {
+  const { values, handleChange, handleSubmit, handleBlur, errors, touched, isSubmitting } =
+    useFormik({
+      initialValues,
+      validationSchema,
+      onSubmit
+    });
 
   const handleAsyncSubmit = (event) => {
     if (isSubmitting) event.preventDefault();
@@ -87,11 +68,7 @@ const AuthForm = ({
             </Grid>
           ))}
           <Grid item xs={12}>
-            <ContainedButton
-              title={<PlainLinkLight linkTo={lightLinkTo} linkTitle={lightLinkTitle} />}
-              type="submit"
-              disabled={!dirty || !isValid}
-            />
+            <ContainedButton title="Login" type="submit" />
           </Grid>
           <Grid item xs={12}>
             <PlainLinkDark linkTo={darkLinkTo} linkTitle={darkLinkTitle} />
