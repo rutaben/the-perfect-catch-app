@@ -1,20 +1,21 @@
 import { Box, Container, Typography, Button } from '@mui/material';
 import AuthService from '../../services/auth-service';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import LogoutIcon from '@mui/icons-material/Logout';
 import MoviesPageForm from './movies-page-form';
 
 const MoviesListPage = ({ name }) => {
+  let navigate = useNavigate();
+
   const handleLogout = () => {
     AuthService.logout();
+    navigate('/');
   };
 
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'end' }}>
       <Button size="large" onClick={handleLogout}>
-        <Link to={'/'} style={{ color: '#023246' }}>
-          <LogoutIcon />
-        </Link>
+        <LogoutIcon />
       </Button>
       <Container
         maxWidth="sm"
