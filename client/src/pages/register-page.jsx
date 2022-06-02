@@ -1,4 +1,7 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
+import { login } from '../store/auth-reducer';
+import AuthService from '../services/auth-service';
 import AuthForm from '../components/auth-form';
 
 const registerFormData = [
@@ -18,15 +21,35 @@ const initialValues = {
 };
 
 const RegisterPage = () => {
+  const dispatch = useDispatch();
+  // let navigate = useNavigate();
+
+  const handleSubmit = async ({ firstName, lastName, email, password, repeatPassword }) => {
+    try {
+      const newUser = await AuthService.register({
+        firstName,
+        lastName,
+        email,
+        password,
+        repeatPassword
+      });
+      console.log(newUser);
+      const loginSuccessAction = login({ newUser });
+      dispatch(loginSuccessAction);
+      // navigate('/favorite-movies');
+    } catch (error) {
+      alert(error.message);
+    }
+  };
+
   return (
     <AuthForm
       textFieldData={registerFormData}
       initialValues={initialValues}
       title="Create an account"
-      lightLinkTo="/favorite-movies"
-      lightLinkTitle="Sign up"
       darkLinkTo="/"
       darkLinkTitle="Already have an account? Login here."
+      onSubmit={handleSubmit}
     />
   );
 };

@@ -7,7 +7,7 @@ import store from './store';
 import theme from './styles/theme';
 import ProtectedRoute from './routing/protected-route';
 import AuthRoute from './routing/auth-route';
-// import RegisterPage from './pages/register-page';
+import RegisterPage from './pages/register-page';
 
 const App = () => {
   return (
@@ -17,7 +17,7 @@ const App = () => {
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<AuthRoute />} />
-            {/* <Route path="/register" element={<RegisterPage />} /> */}
+            <Route path="/register" element={<RegisterPage />} />
             <Route path="/favorite-movies" element={<ProtectedRoute />} />
           </Routes>
         </BrowserRouter>

@@ -40,6 +40,26 @@ const AuthService = new (class AuthService {
     }
   }
 
+  async register({ firstName, lastName, email, password, repeatPassword }) {
+    try {
+      const registerFormData = {
+        firstName,
+        lastName,
+        email,
+        password,
+        repeatPassword
+      };
+      const response = await this.requester.post('/register', registerFormData);
+      const { user, token } = response.data;
+      SessionService.set('auth_token', token);
+      this.setAuth(token);
+
+      return user;
+    } catch (error) {
+      throw new Error(error.response.data.message);
+    }
+  }
+
   async authenticate(token) {
     try {
       const { data: user } = await this.requester.post('/', { token });
