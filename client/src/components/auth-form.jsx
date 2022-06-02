@@ -35,14 +35,9 @@ const AuthForm = ({ textFieldData, initialValues, title, darkLinkTo, darkLinkTit
       onSubmit
     });
 
-  const handleAsyncSubmit = (event) => {
-    if (isSubmitting) event.preventDefault();
-    else handleSubmit(event);
-  };
-
   return (
     <Container maxWidth="xs" component="main">
-      <Box component="form" onSubmit={handleAsyncSubmit} sx={{ mt: 10 }}>
+      <Box component="form" onSubmit={handleSubmit} sx={{ mt: 10 }}>
         <StyledBox sx={{ mb: 3 }}>
           <Typography variant="h5" sx={{ mb: 3 }}>
             {title}
