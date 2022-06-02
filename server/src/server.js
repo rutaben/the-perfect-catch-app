@@ -6,6 +6,7 @@ const cors = require('cors');
 
 const authenticationRouter = require('./routers/authentication-router');
 const userRouter = require('./routers/user-router');
+const movieRouter = require('./routers/movie-router');
 const genreRouter = require('./routers/genre-router');
 
 const server = express();
@@ -22,6 +23,7 @@ server.use(express.json());
 
 server.use('/api/authentication', authenticationRouter);
 server.use('/api/users', userRouter);
+server.use('/api/movies', movieRouter);
 server.use('/api/genres', genreRouter);
 
 server.listen(SERVER_PORT, () => {
