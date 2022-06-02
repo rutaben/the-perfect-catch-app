@@ -5,9 +5,9 @@ import { ThemeProvider } from '@mui/material/styles';
 import { CssBaseline } from '@mui/material';
 import store from './store';
 import theme from './styles/theme';
-import LoginPage from './pages/login-page';
-import RegisterPage from './pages/register-page';
-import MoviesPage from './pages/movies-page';
+import ProtectedRoute from './routing/protected-route';
+import AuthRoute from './routing/auth-route';
+// import RegisterPage from './pages/register-page';
 
 const App = () => {
   return (
@@ -16,9 +16,9 @@ const App = () => {
         <CssBaseline />
         <BrowserRouter>
           <Routes>
-            <Route index element={<LoginPage />} />
-            <Route path="/register" element={<RegisterPage />} />
-            <Route path="/favorite-movies" element={<MoviesPage />} />
+            <Route path="/" element={<AuthRoute />} />
+            {/* <Route path="/register" element={<RegisterPage />} /> */}
+            <Route path="/favorite-movies" element={<ProtectedRoute />} />
           </Routes>
         </BrowserRouter>
       </ThemeProvider>

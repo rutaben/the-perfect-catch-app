@@ -1,10 +1,11 @@
 import axios from 'axios';
 import store from '../store/index';
 import { login, authFailed } from '../store/auth-reducer';
+import SessionService from './session-service';
 
 const AuthService = new (class AuthService {
   constructor() {
-    const token = JSON.parse(localStorage.getItem('auth_token'));
+    const token = SessionService.get('auth_token');
 
     this.requester = axios.create({
       baseURL: 'http://localhost:5000/api/authentication',
@@ -30,7 +31,7 @@ const AuthService = new (class AuthService {
       const {
         data: { user, token }
       } = await this.requester.post('/login', { email, password });
-      localStorage.setItem('auth_token', JSON.stringify(token));
+      SessionService.set('auth_token', token);
       this.setAuth(token);
 
       return user;

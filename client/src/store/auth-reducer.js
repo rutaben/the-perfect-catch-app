@@ -1,9 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
+import SessionService from '../services/session-service';
 
 const initialState = {
   loggedIn: null,
-  user: null,
-  redirectTo: null
+  user: null
 };
 
 const authSlice = createSlice({
@@ -16,12 +16,12 @@ const authSlice = createSlice({
     login(state, { payload }) {
       state.loggedIn = true;
       state.user = payload.user;
-      state.redirectTo = payload.redirectTo;
+      SessionService.set('auth', state);
     },
     logout(state) {
       state.loggedIn = false;
       state.user = null;
-      state.redirectTo = null;
+      SessionService.clear('auth');
     }
   }
 });
