@@ -34,11 +34,7 @@ const RegisterPage = () => {
         password,
         repeatPassword
       });
-      if (typeof newUser === 'string') {
-        console.error(newUser);
-      } else {
-        dispatch(login({ user: newUser }));
-      }
+      dispatch(login({ user: newUser }));
       navigate('/favorite-movies');
     } catch (error) {
       alert(error.message);
