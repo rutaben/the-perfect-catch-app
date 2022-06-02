@@ -1,6 +1,6 @@
 import axios from 'axios';
 import store from '../store/index';
-import { login, authFailed } from '../store/auth-reducer';
+import { login, authFailed, logout } from '../store/auth-reducer';
 import SessionService from './session-service';
 
 const AuthService = new (class AuthService {
@@ -49,6 +49,12 @@ const AuthService = new (class AuthService {
       store.dispatch(authFailed());
       throw new Error(error.message);
     }
+  }
+
+  logout() {
+    SessionService.clear('auth_token');
+    delete this.requester.defaults.headers.common.Authorization;
+    store.dispatch(logout());
   }
 })();
 
