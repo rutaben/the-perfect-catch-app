@@ -34,7 +34,7 @@ const RegisterPage = () => {
         password,
         repeatPassword
       });
-      dispatch(login({ newUser }));
+      dispatch(login({ user: newUser }));
       navigate('/favorite-movies');
     } catch (error) {
       alert(error.message);
