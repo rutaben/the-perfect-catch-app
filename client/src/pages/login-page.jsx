@@ -1,5 +1,8 @@
 import React from 'react';
-import AuthenticationForm from '../components/authentication-form';
+import { useDispatch } from 'react-redux';
+import AuthService from '../services/auth-service';
+import { login } from '../store/auth-reducer';
+import AuthForm from '../components/auth-form';
 
 const loginFormData = [
   { id: 'email', name: 'email', label: 'Email', type: 'email' },
@@ -12,8 +15,23 @@ const initialValues = {
 };
 
 const LoginPage = () => {
+  const dispatch = useDispatch();
+
+  const handleSubmit = async ({ email, password }) => {
+    try {
+      const user = await AuthService.login({
+        email,
+        password
+      });
+      const loginSuccessAction = login({ user });
+      dispatch(loginSuccessAction);
+    } catch (error) {
+      alert(error.message);
+    }
+  };
+
   return (
-    <AuthenticationForm
+    <AuthForm
       textFieldData={loginFormData}
       initialValues={initialValues}
       title="Login"
@@ -21,6 +39,7 @@ const LoginPage = () => {
       lightLinkTitle="Login"
       darkLinkTo="/register"
       darkLinkTitle="Don't have an account? Register here."
+      onSubmit={handleSubmit}
     />
   );
 };

@@ -1,7 +1,7 @@
-import { Container, Pagination, Typography } from '@mui/material';
+import { Container, Typography } from '@mui/material';
 import MoviesPageForm from './movies-page-form';
 
-const MoviesListPage = () => {
+const MoviesListPage = ({ name }) => {
   return (
     <Container
       maxWidth="sm"
@@ -12,10 +12,9 @@ const MoviesListPage = () => {
       }}
     >
       <Typography variant="h4" sx={{ mt: 10 }}>
-        Hi, Username!
+        What did you catch today, {name}?
       </Typography>
       <MoviesPageForm />
-      <Pagination shape="rounded" count="1" sx={{ mb: 10 }} />
     </Container>
   );
 };

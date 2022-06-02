@@ -1,5 +1,5 @@
 import React from 'react';
-import AuthenticationForm from '../components/authentication-form';
+import AuthForm from '../components/auth-form';
 
 const registerFormData = [
   { id: 'firstName', name: 'firstName', label: 'First Name', type: 'text' },
@@ -19,7 +19,7 @@ const initialValues = {
 
 const RegisterPage = () => {
   return (
-    <AuthenticationForm
+    <AuthForm
       textFieldData={registerFormData}
       initialValues={initialValues}
       title="Create an account"

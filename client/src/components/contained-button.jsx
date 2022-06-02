@@ -10,9 +10,15 @@ const StyledButton = styled(Button)(({ theme }) => ({
   }
 }));
 
-const ContainedButton = ({ title, type }) => {
+const ContainedButton = ({ title, type, disabled }) => {
   return (
-    <StyledButton variant="contained" type={type} fullWidth sx={{ px: 10, py: 1, mx: 'auto' }}>
+    <StyledButton
+      variant="contained"
+      type={type}
+      disabled={disabled}
+      fullWidth
+      sx={{ px: 10, py: 1, mx: 'auto' }}
+    >
       {title}
     </StyledButton>
   );
