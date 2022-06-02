@@ -25,11 +25,10 @@ const validationSchema = yup.object({
 });
 
 const initialValues = { title: '' };
-const initialGenresArr = [];
 
 const MoviesPageForm = ({ genres }) => {
   const [moviesList, setmoviesList] = useState([]);
-  const [genresList, setGenresList] = useState(initialGenresArr);
+  const [genresList, setGenresList] = useState([]);
 
   const handleGenresChange = (e) => {
     let currGenresListCopy = [...genresList];
@@ -47,7 +46,7 @@ const MoviesPageForm = ({ genres }) => {
     if (!currMoviesListCopy.find((obj) => obj.title === value.title)) {
       currMoviesListCopy.push(joinedValue);
       setmoviesList(currMoviesListCopy);
-      setGenresList(initialGenresArr);
+      setGenresList([]);
     } else {
       alert('This movie already exists');
     }
@@ -91,19 +90,19 @@ const MoviesPageForm = ({ genres }) => {
           label="Choose genres"
           type="text"
           onChange={handleGenresChange}
-          value={values.genres}
+          // value={values.genres}
           margin="normal"
           variant="outlined"
           sx={{ mb: 1 }}
         >
           {genres.length ? (
-            genres.map((genre) => (
-              <MenuItem key={genre} value={genre}>
-                {genre}
+            genres.map(({ id, title }) => (
+              <MenuItem key={id} value={title}>
+                {title}
               </MenuItem>
             ))
           ) : (
-            <MenuItem>loading...</MenuItem>
+            <MenuItem>Loading...</MenuItem>
           )}
         </TextField>
         <Box>
@@ -139,7 +138,7 @@ const MoviesPageForm = ({ genres }) => {
         </Box>
         <ContainedButton title="Pridėti" type="submit" />
       </Box>
-      <MoviesPageList movies={moviesList} />
+      <MoviesPageList />
     </Container>
   );
 };
