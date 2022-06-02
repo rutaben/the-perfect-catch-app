@@ -1,16 +1,29 @@
 /* eslint-disable no-unused-vars */
+import React, { useState, useEffect } from 'react';
 import { Box, Typography, List, ListItem, Stack, Chip } from '@mui/material';
+import ApiService from '../../services/api-service';
 import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 
-const MoviesPageList = ({ movies }) => {
+const MoviesPageList = () => {
+  const [moviesList, setMoviesList] = useState([]);
+  console.log(moviesList);
+
+  useEffect(() => {
+    (async () => {
+      const fetchedUserMovies = await ApiService.getMovies();
+      const modeledGenres = Object.values(fetchedUserMovies).flat();
+      setMoviesList(modeledGenres);
+    })();
+  }, []);
+
   return (
     <Box sx={{ my: 7 }}>
       <List>
-        {movies.map(({ title, genres }) => (
+        {moviesList.map(({ id, title, genres }) => (
           <>
             <ListItem
-              key={title}
+              key={id}
               sx={{
                 display: 'flex',
                 flexDirection: 'column',
@@ -36,8 +49,8 @@ const MoviesPageList = ({ movies }) => {
             </ListItem>
             <Box sx={{ mb: 3 }}>
               <Stack direction="row" spacing={1}>
-                {genres.map((genre) => {
-                  return <Chip key={genre} label={genre} />;
+                {genres.map(({ id, title }) => {
+                  return <Chip key={id} label={title} />;
                 })}
               </Stack>
             </Box>
