@@ -2,7 +2,7 @@ const MovieModel = require('../models/movie-model');
 const MovieViewModel = require('../view-models/movie-view-model');
 
 const getMovies = async (req, res) => {
-  const movieDocs = await MovieModel.find().populate('genres');
+  const movieDocs = await MovieModel.find().populate('genres').populate('user');
   const movies = movieDocs.map((movie) => new MovieViewModel(movie));
   res.status(200).json({
     movies
@@ -11,10 +11,11 @@ const getMovies = async (req, res) => {
 
 const createMovie = async (req, res) => {
   console.log(req.body);
-  const { title, genres } = req.body;
+  const { title, genres, user } = req.body;
   const movieDoc = await MovieModel({
     title,
-    genres
+    genres,
+    user
   });
 
   try {
@@ -31,7 +32,7 @@ const createMovie = async (req, res) => {
 const getMovie = async (req, res) => {
   const { id } = req.params;
   try {
-    const movieDoc = await MovieModel.findById(id).populate('genres');
+    const movieDoc = await MovieModel.findById(id).populate('genres').populate('user');
     const movie = new MovieViewModel(movieDoc);
     res.status(200).json(movie);
   } catch (error) {
