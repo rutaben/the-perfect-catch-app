@@ -4,6 +4,7 @@ import AuthService from '../../services/auth-service';
 import ApiService from '../../services/api-service';
 import { useNavigate } from 'react-router-dom';
 import LogoutIcon from '@mui/icons-material/Logout';
+import MoviesPageForm from './movies-page-form';
 
 const MoviesListPage = ({ name }) => {
   const [genres, setGenres] = useState([]);
