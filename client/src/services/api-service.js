@@ -1,4 +1,5 @@
 import axios from 'axios';
+import SessionService from './session-service';
 
 const instance = axios.create({
   baseURL: 'http://localhost:5000/api',
@@ -19,9 +20,13 @@ const getGenres = async () => {
 
 const getMovies = async () => {
   try {
+    const userId = SessionService.get('auth').user.id;
     const movies = await instance.get('/movies');
+    const moviesFiltered = Object.values(movies.data)
+      .flat()
+      .filter((movie) => movie.user.id === userId);
 
-    return movies.data;
+    return moviesFiltered;
   } catch (error) {
     return error;
   }
