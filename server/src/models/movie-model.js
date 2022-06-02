@@ -12,13 +12,17 @@ const movieSchema = new Schema(
         type: Schema.Types.ObjectId,
         ref: 'Genre'
       }
-    ]
+    ],
+    user: {
+      type: Schema.Types.ObjectId,
+      ref: 'User'
+    }
   },
   {
     timestamps: true
   }
 );
 
-const MovieModel = Mongoose.model('Product', movieSchema);
+const MovieModel = Mongoose.model('Movies', movieSchema);
 
 module.exports = MovieModel;
