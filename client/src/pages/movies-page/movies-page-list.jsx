@@ -14,9 +14,8 @@ const MoviesPageList = ({ movies }) => {
     <Container maxWidth="sm" sx={{ my: 2 }}>
       <List>
         {movies.map(({ id, title, genres }) => (
-          <>
+          <Box key={id}>
             <ListItem
-              key={id}
               sx={{
                 display: 'flex',
                 flexDirection: 'column',
@@ -48,7 +47,7 @@ const MoviesPageList = ({ movies }) => {
                 })}
               </Stack>
             </Box>
-          </>
+          </Box>
         ))}
       </List>
     </Container>
