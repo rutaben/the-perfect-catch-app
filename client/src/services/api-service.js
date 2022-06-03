@@ -44,17 +44,22 @@ const getMovie = async (id) => {
 
 const createMovie = async (movieData) => {
   try {
-    const { data } = await instance.post('/movies', movieData);
+    const movie = await instance.post('/movies', movieData);
 
-    return data;
+    return movie.data;
   } catch (error) {
     return error.message;
   }
 };
 
 const deleteMovie = async (id) => {
-  console.log(id);
-  await instance.delete(`movies/${id}`);
+  try {
+    const movie = await instance.delete(`movies/${id}`);
+
+    return movie.data;
+  } catch (error) {
+    return error.message;
+  }
 };
 
 const ApiService = {

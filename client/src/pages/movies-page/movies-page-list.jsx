@@ -1,28 +1,19 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Container, Box, Typography, List, ListItem, Stack, Chip } from '@mui/material';
 import ApiService from '../../services/api-service';
 import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 
-const MoviesPageList = () => {
-  const [moviesList, setMoviesList] = useState([]);
-
-  useEffect(() => {
-    (async () => {
-      const fetchedUserMovies = await ApiService.getMovies();
-      const modeledGenres = Object.values(fetchedUserMovies).flat();
-      setMoviesList(modeledGenres);
-    })();
-  }, []);
-
+const MoviesPageList = ({ movies }) => {
   const handleMovieDeletion = async (id) => {
     await ApiService.deleteMovie(id);
+    window.location.reload(false);
   };
 
   return (
     <Container maxWidth="sm" sx={{ my: 2 }}>
       <List>
-        {moviesList.map(({ id, title, genres }) => (
+        {movies.map(({ id, title, genres }) => (
           <>
             <ListItem
               key={id}
