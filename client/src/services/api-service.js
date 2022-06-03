@@ -52,11 +52,17 @@ const createMovie = async (movieData) => {
   }
 };
 
+const deleteMovie = async (id) => {
+  console.log(id);
+  await instance.delete(`movies/${id}`);
+};
+
 const ApiService = {
   getGenres,
   getMovies,
   getMovie,
-  createMovie
+  createMovie,
+  deleteMovie
 };
 
 export default ApiService;
