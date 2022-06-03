@@ -5,6 +5,7 @@ import ApiService from '../../services/api-service';
 import { useNavigate } from 'react-router-dom';
 import LogoutIcon from '@mui/icons-material/Logout';
 import MoviesPageForm from './movies-page-form';
+import MoviesPageList from './movies-page-list';
 
 const MoviesListPage = ({ name }) => {
   const [genres, setGenres] = useState([]);
@@ -24,12 +25,11 @@ const MoviesListPage = ({ name }) => {
   };
 
   return (
-    <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'end' }}>
+    <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%' }}>
       <Button size="large" onClick={handleLogout}>
         <LogoutIcon />
       </Button>
       <Container
-        maxWidth="sm"
         sx={{
           display: 'flex',
           flexDirection: 'column',
@@ -41,6 +41,7 @@ const MoviesListPage = ({ name }) => {
         </Typography>
         <MoviesPageForm genres={genres} />
       </Container>
+      <MoviesPageList />
     </Box>
   );
 };

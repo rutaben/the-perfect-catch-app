@@ -1,6 +1,5 @@
-/* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
-import { Box, Typography, List, ListItem, Stack, Chip } from '@mui/material';
+import { Container, Box, Typography, List, ListItem, Stack, Chip } from '@mui/material';
 import ApiService from '../../services/api-service';
 import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -17,7 +16,7 @@ const MoviesPageList = () => {
   }, []);
 
   return (
-    <Box sx={{ my: 7 }}>
+    <Container maxWidth="sm" sx={{ my: 2 }}>
       <List>
         {moviesList.map(({ id, title, genres }) => (
           <>
@@ -27,6 +26,7 @@ const MoviesPageList = () => {
                 display: 'flex',
                 flexDirection: 'column',
                 backgroundColor: '#f2f3f4',
+                width: '100%',
                 my: 2,
                 py: 0.5,
                 borderRadius: 2
@@ -48,15 +48,20 @@ const MoviesPageList = () => {
             </ListItem>
             <Box sx={{ mb: 3 }}>
               <Stack direction="row" spacing={1}>
-                {genres.map(({ id, title }) => {
-                  return <Chip key={id} label={title} />;
+                {genres.map((genre) => {
+                  return (
+                    <Chip
+                      key={`${title + Math.floor(Math.random() * 10000)}`}
+                      label={genre.title}
+                    />
+                  );
                 })}
               </Stack>
             </Box>
           </>
         ))}
       </List>
-    </Box>
+    </Container>
   );
 };
 
