@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Box, Container, Typography, Button } from '@mui/material';
 import AuthService from '../../services/auth-service';
 import ApiService from '../../services/api-service';
@@ -28,14 +28,6 @@ const MoviesListPage = ({ name }) => {
     })();
   }, []);
 
-  useMemo(
-    () => ({
-      genres,
-      movies
-    }),
-    [genres, movies]
-  );
-
   const handleLogout = () => {
     AuthService.logout();
     navigate('/');
@@ -43,9 +35,11 @@ const MoviesListPage = ({ name }) => {
 
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%' }}>
-      <Button size="large" onClick={handleLogout}>
-        <LogoutIcon />
-      </Button>
+      <Box sx={{ width: '100%', display: 'flex', justifyContent: 'flex-end' }}>
+        <Button size="large" onClick={handleLogout}>
+          <LogoutIcon />
+        </Button>
+      </Box>
       <Container
         sx={{
           display: 'flex',
@@ -53,7 +47,7 @@ const MoviesListPage = ({ name }) => {
           alignItems: 'center'
         }}
       >
-        <Typography variant="h4" sx={{ mt: 10 }}>
+        <Typography variant="h4" sx={{ mt: 7 }}>
           What did you catch today, {name}?
         </Typography>
         <MoviesPageForm genres={genres} />

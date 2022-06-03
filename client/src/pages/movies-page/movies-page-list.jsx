@@ -11,20 +11,21 @@ const MoviesPageList = ({ movies }) => {
   };
 
   return (
-    <Container maxWidth="sm" sx={{ my: 2 }}>
+    <Container maxWidth="sm" sx={{ mt: 5 }}>
+      <Typography variant="h5">Favorite movies</Typography>
       <List>
         {movies.map(({ id, title, genres }) => (
           <Box key={id}>
             <ListItem
-              sx={{
+              sx={(theme) => ({
                 display: 'flex',
                 flexDirection: 'column',
-                backgroundColor: '#f2f3f4',
                 width: '100%',
+                backgroundColor: theme.palette.background.light,
                 my: 2,
                 py: 0.5,
                 borderRadius: 2
-              }}
+              })}
             >
               <Box
                 sx={{
@@ -34,7 +35,9 @@ const MoviesPageList = ({ movies }) => {
                   alignItems: 'center'
                 }}
               >
-                <Typography sx={{ textTransform: 'capitalize' }}>{title}</Typography>
+                <Typography variant="body1" sx={{ textTransform: 'capitalize' }}>
+                  {title}
+                </Typography>
                 <IconButton sx={{ color: '#ff0028' }} onClick={() => handleMovieDeletion(id)}>
                   <DeleteIcon />
                 </IconButton>
