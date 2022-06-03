@@ -12,7 +12,11 @@ const MoviesPageList = ({ movies }) => {
 
   return (
     <Container maxWidth="sm" sx={{ mt: 5 }}>
-      <Typography variant="h5">Favorite movies</Typography>
+      {movies.length > 0 ? (
+        <Typography variant="h5">Favourite movies</Typography>
+      ) : (
+        <Typography variant="h5">There are no favourite movies yet :(</Typography>
+      )}
       <List>
         {movies.map(({ id, title, genres }) => (
           <Box key={id}>
