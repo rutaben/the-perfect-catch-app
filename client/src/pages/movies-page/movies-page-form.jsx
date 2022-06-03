@@ -42,6 +42,12 @@ const MoviesPageForm = ({ genres }) => {
     }
   };
 
+  const handleGenreDeletion = (id) => {
+    let currGenresListCopy = [...genresList];
+    const filteredList = currGenresListCopy.filter((genre) => genre.id !== id);
+    setGenresList(filteredList);
+  };
+
   const onSubmit = async (value, { resetForm }) => {
     try {
       const movieData = { ...value, genres: genresList.map((genre) => genre.id), user: userId };
@@ -49,7 +55,7 @@ const MoviesPageForm = ({ genres }) => {
       resetForm(initialValues);
       setGenresList([]);
     } catch (error) {
-      alert('Nutiko klaida');
+      alert('An error has occured');
     }
   };
 
@@ -90,7 +96,6 @@ const MoviesPageForm = ({ genres }) => {
           label="Choose genres"
           type="text"
           onChange={handleGenresChange}
-          // value={values.genres}
           margin="normal"
           variant="outlined"
           sx={{ mb: 1 }}
@@ -128,7 +133,7 @@ const MoviesPageForm = ({ genres }) => {
                   }}
                 >
                   <Typography sx={{ textTransform: 'capitalize' }}>{title}</Typography>
-                  <IconButton>
+                  <IconButton onClick={() => handleGenreDeletion(id)}>
                     <ClearIcon />
                   </IconButton>
                 </Box>
