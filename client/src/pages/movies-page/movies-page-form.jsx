@@ -12,7 +12,8 @@ import {
   IconButton
 } from '@mui/material';
 import * as yup from 'yup';
-import MoviesPageList from './movies-page-list';
+import SessionService from '../../services/session-service';
+import ApiService from '../../services/api-service';
 import ContainedButton from '../../components/contained-button';
 import ClearIcon from '@mui/icons-material/Clear';
 
@@ -27,8 +28,9 @@ const validationSchema = yup.object({
 const initialValues = { title: '' };
 
 const MoviesPageForm = ({ genres }) => {
-  const [moviesList, setmoviesList] = useState([]);
   const [genresList, setGenresList] = useState([]);
+
+  const userId = SessionService.get('auth').user.id;
 
   const handleGenresChange = (e) => {
     let currGenresListCopy = [...genresList];
@@ -40,17 +42,15 @@ const MoviesPageForm = ({ genres }) => {
     }
   };
 
-  const onSubmit = (value, { resetForm }) => {
-    let joinedValue = { ...value, genres: genresList };
-    let currMoviesListCopy = [...moviesList];
-    if (!currMoviesListCopy.find((obj) => obj.title === value.title)) {
-      currMoviesListCopy.push(joinedValue);
-      setmoviesList(currMoviesListCopy);
+  const onSubmit = async (value, { resetForm }) => {
+    try {
+      const movieData = { ...value, genres: genresList.map((genre) => genre.id), user: userId };
+      await ApiService.createMovie(movieData);
+      resetForm(initialValues);
       setGenresList([]);
-    } else {
-      alert('This movie already exists');
+    } catch (error) {
+      alert('Nutiko klaida');
     }
-    resetForm(initialValues);
   };
 
   const { values, handleChange, handleSubmit, handleBlur, errors, touched, isSubmitting } =
@@ -61,7 +61,7 @@ const MoviesPageForm = ({ genres }) => {
     });
 
   return (
-    <Container>
+    <Container maxWidth="sm">
       <Box
         component="form"
         onSubmit={handleSubmit}
@@ -96,9 +96,9 @@ const MoviesPageForm = ({ genres }) => {
           sx={{ mb: 1 }}
         >
           {genres.length ? (
-            genres.map(({ id, title }) => (
-              <MenuItem key={id} value={title}>
-                {title}
+            genres.map((genre) => (
+              <MenuItem key={genre.id} value={genre}>
+                {genre.title}
               </MenuItem>
             ))
           ) : (
@@ -107,16 +107,16 @@ const MoviesPageForm = ({ genres }) => {
         </TextField>
         <Box>
           <List sx={{ mb: 3, display: 'flex', flexWrap: 'wrap' }}>
-            {genresList.map((item) => (
+            {genresList.map(({ id, title }) => (
               <ListItem
-                key={item}
+                key={id}
                 sx={{
                   backgroundColor: '#f2f3f4',
                   margin: '0.3rem',
                   paddingRight: 0,
                   borderRadius: 2,
                   height: '2.5rem',
-                  width: `${item.length * 0.5 + 5}rem`
+                  width: `${title.length * 0.5 + 5}rem`
                 }}
               >
                 <Box
@@ -127,7 +127,7 @@ const MoviesPageForm = ({ genres }) => {
                     width: '100%'
                   }}
                 >
-                  <Typography sx={{ textTransform: 'capitalize' }}>{item}</Typography>
+                  <Typography sx={{ textTransform: 'capitalize' }}>{title}</Typography>
                   <IconButton>
                     <ClearIcon />
                   </IconButton>
@@ -138,7 +138,6 @@ const MoviesPageForm = ({ genres }) => {
         </Box>
         <ContainedButton title="Pridėti" type="submit" />
       </Box>
-      <MoviesPageList />
     </Container>
   );
 };

@@ -42,10 +42,21 @@ const getMovie = async (id) => {
   }
 };
 
-const API = {
-  getMovies,
-  getMovie,
-  getGenres
+const createMovie = async (movieData) => {
+  try {
+    const { data } = await instance.post('/movies', movieData);
+
+    return data;
+  } catch (error) {
+    return error.message;
+  }
 };
 
-export default API;
+const ApiService = {
+  getGenres,
+  getMovies,
+  getMovie,
+  createMovie
+};
+
+export default ApiService;
