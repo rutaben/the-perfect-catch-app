@@ -1,9 +1,10 @@
 import React from 'react';
-import { Container, Box, Typography, Grid, TextField, styled } from '@mui/material';
+import { Container, Box, Avatar, Typography, Grid, TextField, styled } from '@mui/material';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 import ContainedButton from './contained-button';
 import PlainLinkDark from './plain-link-dark';
+import HeroImage from '../assets/hero-image.png';
 
 const StyledBox = styled(Box)(() => ({
   display: 'flex',
@@ -36,41 +37,65 @@ const AuthForm = ({ textFieldData, initialValues, title, darkLinkTo, darkLinkTit
     });
 
   return (
-    <Container maxWidth="xs" component="main">
-      <Box component="form" onSubmit={handleSubmit} sx={{ mt: 10 }}>
-        <StyledBox sx={{ mb: 3 }}>
-          <Typography variant="h5" sx={{ mb: 3 }}>
-            {title}
-          </Typography>
-        </StyledBox>
-        <Grid container spacing={4}>
-          {textFieldData.map(({ id, name, label, type }) => (
-            <Grid item key={id} xs={12}>
-              <TextField
-                variant="outlined"
-                fullWidth
-                id={id}
-                name={name}
-                label={label}
-                type={type}
-                value={values[name]}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                error={touched[name] && Boolean(errors[name])}
-                helperText={touched[name] && errors[name]}
-                disabled={isSubmitting}
-              />
-            </Grid>
-          ))}
-          <Grid item xs={12}>
-            <ContainedButton title="Login" type="submit" />
-          </Grid>
-          <Grid item xs={12}>
-            <PlainLinkDark linkTo={darkLinkTo} linkTitle={darkLinkTitle} />
-          </Grid>
-        </Grid>
+    <>
+      <Box>
+        <Avatar
+          alt="fisherman-with-movie-catch"
+          src={HeroImage}
+          sx={{ width: '100vw', height: '100%', borderRadius: 0 }}
+        />
       </Box>
-    </Container>
+      <Container maxWidth="xs" component="main">
+        <Box component="form" onSubmit={handleSubmit} sx={{ my: 7 }}>
+          <StyledBox sx={{ mb: 5 }}>
+            <Typography
+              variant="body1"
+              align="center"
+              sx={(theme) => ({ mb: 1, color: theme.palette.secondary.dark })}
+            >
+              A perfect little free* App, we call it The Perfect Catch. In case you did not know,
+              here you can log your favorite movies ON THE GO!
+            </Typography>
+          </StyledBox>
+          <Grid container spacing={2}>
+            {textFieldData.map(({ id, name, label, type }) => (
+              <Grid item key={id} xs={12}>
+                <TextField
+                  variant="outlined"
+                  size="small"
+                  fullWidth
+                  id={id}
+                  name={name}
+                  label={label}
+                  type={type}
+                  value={values[name]}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  error={touched[name] && Boolean(errors[name])}
+                  helperText={touched[name] && errors[name]}
+                  disabled={isSubmitting}
+                />
+              </Grid>
+            ))}
+            <Grid item xs={12} sx={{ mt: 2 }}>
+              <ContainedButton title={title} type="submit" />
+            </Grid>
+            <Grid item xs={12}>
+              <PlainLinkDark linkTo={darkLinkTo} linkTitle={darkLinkTitle} />
+            </Grid>
+          </Grid>
+        </Box>
+      </Container>
+      <Box>
+        <Typography
+          variant="body2"
+          align="left"
+          sx={(theme) => ({ m: 3, fontSize: '0.75rem', color: theme.palette.secondary.dark })}
+        >
+          *Nothing in life is really free. We will collect your data while you sleep.
+        </Typography>
+      </Box>
+    </>
   );
 };
 
