@@ -15,6 +15,10 @@ const MoviesPageList = () => {
     })();
   }, []);
 
+  const handleMovieDeletion = async (id) => {
+    await ApiService.deleteMovie(id);
+  };
+
   return (
     <Container maxWidth="sm" sx={{ my: 2 }}>
       <List>
@@ -41,7 +45,7 @@ const MoviesPageList = () => {
                 }}
               >
                 <Typography sx={{ textTransform: 'capitalize' }}>{title}</Typography>
-                <IconButton sx={{ color: '#ff0028' }}>
+                <IconButton sx={{ color: '#ff0028' }} onClick={() => handleMovieDeletion(id)}>
                   <DeleteIcon />
                 </IconButton>
               </Box>
@@ -49,12 +53,7 @@ const MoviesPageList = () => {
             <Box sx={{ mb: 3 }}>
               <Stack direction="row" spacing={1}>
                 {genres.map((genre) => {
-                  return (
-                    <Chip
-                      key={`${title + Math.floor(Math.random() * 10000)}`}
-                      label={genre.title}
-                    />
-                  );
+                  return <Chip key={Math.floor(Math.random() * Date.now())} label={genre.title} />;
                 })}
               </Stack>
             </Box>
