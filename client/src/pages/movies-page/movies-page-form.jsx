@@ -73,7 +73,8 @@ const MoviesPageForm = ({ genres }) => {
         component="form"
         onSubmit={handleSubmit}
         sx={{
-          my: 5,
+          mt: 7,
+          mb: 2,
           display: 'flex',
           flexDirection: 'column'
         }}
@@ -89,7 +90,6 @@ const MoviesPageForm = ({ genres }) => {
           disabled={isSubmitting}
           variant="outlined"
           fullWidth
-          sx={{ mt: 5, mb: 2 }}
         />
         <TextField
           select
@@ -99,7 +99,7 @@ const MoviesPageForm = ({ genres }) => {
           onChange={handleGenresChange}
           margin="normal"
           variant="outlined"
-          sx={{ mb: 1 }}
+          sx={{ mb: 3 }}
         >
           {genres.length ? (
             genres.map((genre) => (
@@ -112,7 +112,7 @@ const MoviesPageForm = ({ genres }) => {
           )}
         </TextField>
         <Box>
-          <List sx={{ mb: 3, display: 'flex', flexWrap: 'wrap' }}>
+          <List sx={{ display: 'flex', flexWrap: 'wrap' }}>
             {genresList.map(({ id, title }) => (
               <ListItem
                 key={id}
