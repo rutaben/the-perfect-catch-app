@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { Box, Container, Typography, Button } from '@mui/material';
 import AuthService from '../../services/auth-service';
 import ApiService from '../../services/api-service';
@@ -9,6 +9,7 @@ import MoviesPageList from './movies-page-list';
 
 const MoviesListPage = ({ name }) => {
   const [genres, setGenres] = useState([]);
+  const [movies, setMovies] = useState([]);
   let navigate = useNavigate();
 
   useEffect(() => {
@@ -18,6 +19,22 @@ const MoviesListPage = ({ name }) => {
       setGenres(modeledGenres);
     })();
   }, []);
+
+  useEffect(() => {
+    (async () => {
+      const fetchedUserMovies = await ApiService.getMovies();
+      const modeledGenres = Object.values(fetchedUserMovies).flat();
+      setMovies(modeledGenres);
+    })();
+  }, []);
+
+  useMemo(
+    () => ({
+      genres,
+      movies
+    }),
+    [genres, movies]
+  );
 
   const handleLogout = () => {
     AuthService.logout();
@@ -41,7 +58,7 @@ const MoviesListPage = ({ name }) => {
         </Typography>
         <MoviesPageForm genres={genres} />
       </Container>
-      <MoviesPageList />
+      <MoviesPageList movies={movies} />
     </Box>
   );
 };

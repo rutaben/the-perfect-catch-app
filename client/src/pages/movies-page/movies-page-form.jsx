@@ -54,6 +54,7 @@ const MoviesPageForm = ({ genres }) => {
       await ApiService.createMovie(movieData);
       resetForm(initialValues);
       setGenresList([]);
+      window.location.reload(false);
     } catch (error) {
       alert('An error has occured');
     }
