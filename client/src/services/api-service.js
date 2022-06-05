@@ -1,16 +1,9 @@
-import axios from 'axios';
 import SessionService from './session-service';
-
-const instance = axios.create({
-  baseURL: 'http://localhost:5000/api',
-  headers: {
-    'Content-Type': 'application/json'
-  }
-});
+import { axiosInstance } from './helpers/axios-instance';
 
 const getGenres = async () => {
   try {
-    const response = await instance.get('/genres');
+    const response = await axiosInstance.get('/genres');
 
     return response.data;
   } catch (error) {
@@ -21,7 +14,7 @@ const getGenres = async () => {
 const getMovies = async () => {
   try {
     const userId = SessionService.get('auth').user.id;
-    const movies = await instance.get('/movies');
+    const movies = await axiosInstance.get('/movies');
     const moviesFiltered = Object.values(movies.data)
       .flat()
       .filter((movie) => movie.user.id === userId);
@@ -34,7 +27,7 @@ const getMovies = async () => {
 
 const getMovie = async (id) => {
   try {
-    const movie = await instance.get(`/movies/${id}`);
+    const movie = await axiosInstance.get(`/movies/${id}`);
 
     return movie.data;
   } catch (error) {
@@ -44,7 +37,7 @@ const getMovie = async (id) => {
 
 const createMovie = async (movieData) => {
   try {
-    const movie = await instance.post('/movies', movieData);
+    const movie = await axiosInstance.post('/movies', movieData);
 
     return movie.data;
   } catch (error) {
@@ -54,7 +47,7 @@ const createMovie = async (movieData) => {
 
 const deleteMovie = async (id) => {
   try {
-    const movie = await instance.delete(`movies/${id}`);
+    const movie = await axiosInstance.delete(`movies/${id}`);
 
     return movie.data;
   } catch (error) {

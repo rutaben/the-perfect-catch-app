@@ -1,18 +1,13 @@
-import axios from 'axios';
 import store from '../store/index';
 import { login, authFailed, logout } from '../store/auth-reducer';
 import SessionService from './session-service';
+import { axiosInstance } from './helpers/axios-instance';
 
 const AuthService = new (class AuthService {
   constructor() {
     const token = SessionService.get('auth_token');
 
-    this.requester = axios.create({
-      baseURL: 'http://localhost:5000/api/authentication',
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    });
+    this.requester = axiosInstance;
     if (token) {
       this.requester.defaults.headers.common.Authorization = `Bearer ${token}`;
       this.authenticate(token);
@@ -30,7 +25,7 @@ const AuthService = new (class AuthService {
     try {
       const {
         data: { user, token }
-      } = await this.requester.post('/login', { email, password });
+      } = await this.requester.post('/authentication/login', { email, password });
       SessionService.set('auth_token', token);
       this.setAuth(token);
 
@@ -49,7 +44,7 @@ const AuthService = new (class AuthService {
         password,
         repeatPassword
       };
-      const response = await this.requester.post('/register', registerFormData);
+      const response = await this.requester.post('/authentication/register', registerFormData);
       const { user, token } = response.data;
       SessionService.set('auth_token', token);
       this.setAuth(token);
@@ -62,7 +57,7 @@ const AuthService = new (class AuthService {
 
   async authenticate(token) {
     try {
-      const { data: user } = await this.requester.post('/', { token });
+      const { data: user } = await this.requester.post('/authentication', { token });
       store.dispatch(login({ user }));
       this.setAuth(token);
     } catch (error) {
