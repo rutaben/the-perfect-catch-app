@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import SessionService from '../services/session-service';
+import SessionService from '../services/local-storage-service';
 
 const initialState = {
   loggedIn: null,

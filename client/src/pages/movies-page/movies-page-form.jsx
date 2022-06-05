@@ -11,7 +11,7 @@ import {
   IconButton
 } from '@mui/material';
 import * as yup from 'yup';
-import SessionService from '../../services/session-service';
+import SessionService from '../../services/local-storage-service';
 import ApiService from '../../services/api-service';
 import ContainedButton from '../../components/contained-button';
 import ClearIcon from '@mui/icons-material/Clear';

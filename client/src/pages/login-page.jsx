@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import AuthService from '../services/auth-service';
-import { login } from '../store/auth-reducer';
+import { login } from '../store/auth-slice';
 import AuthForm from '../components/auth-form';
 import { useNavigate } from 'react-router-dom';
 // import { Box, Avatar } from '@mui/material';
