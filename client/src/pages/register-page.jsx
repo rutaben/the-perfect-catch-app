@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { login } from '../store/auth-reducer';
+import { login } from '../store/auth-slice';
 import AuthService from '../services/auth-service';
 import AuthForm from '../components/auth-form';
 

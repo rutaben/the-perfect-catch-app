@@ -1,4 +1,4 @@
-import SessionService from './session-service';
+import SessionService from './local-storage-service';
 import { axiosInstance } from './helpers/axios-instance';
 
 const getGenres = async () => {

@@ -7,7 +7,7 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import MoviesPageForm from './movies-page-form';
 import MoviesPageList from './movies-page-list';
 
-const MoviesListPage = ({ name }) => {
+const MoviesPage = ({ name }) => {
   const [genres, setGenres] = useState([]);
   const [movies, setMovies] = useState([]);
   let navigate = useNavigate();
@@ -57,4 +57,4 @@ const MoviesListPage = ({ name }) => {
   );
 };
 
-export default MoviesListPage;
+export default MoviesPage;

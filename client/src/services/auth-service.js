@@ -1,6 +1,6 @@
 import store from '../store/index';
-import { login, authFailed, logout } from '../store/auth-reducer';
-import SessionService from './session-service';
+import { login, authFailed, logout } from '../store/auth-slice';
+import SessionService from './local-storage-service';
 import { axiosInstance } from './helpers/axios-instance';
 
 const AuthService = new (class AuthService {
