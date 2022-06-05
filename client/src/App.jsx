@@ -9,7 +9,6 @@ import AuthRoute from './routing/auth-route';
 import ProtectedRoute from './routing/protected-route';
 import LoginPage from './pages/login-page';
 import RegisterPage from './pages/register-page';
-// import RegistrationAuthRoute from './routing/registration-auth-route.jsx';
 
 const App = () => {
   return (
