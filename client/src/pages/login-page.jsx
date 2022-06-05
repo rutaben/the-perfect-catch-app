@@ -4,8 +4,6 @@ import AuthService from '../services/auth-service';
 import { login } from '../store/auth-slice';
 import AuthForm from '../components/auth-form';
 import { useNavigate } from 'react-router-dom';
-// import { Box, Avatar } from '@mui/material';
-// import HeroImage from '../assets/hero-image.png';
 
 const loginFormData = [
   { id: 'email', name: 'email', label: 'Email', type: 'email' },
