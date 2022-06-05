@@ -2,7 +2,7 @@ import React from 'react';
 import { Navigate } from 'react-router-dom';
 import RegisterPage from '../pages/register-page';
 
-const RegistrationAuthRoute = () => {
+const RegistrationAuthRoute = ({ page }) => {
   const authState = JSON.parse(localStorage.getItem('auth'));
 
   if (!authState || authState.loggedIn === false) {
