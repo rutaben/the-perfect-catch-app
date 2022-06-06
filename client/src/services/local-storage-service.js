@@ -6,10 +6,10 @@ const get = (name) => JSON.parse(window.localStorage.getItem(name));
 
 const clear = (name) => window.localStorage.removeItem(name);
 
-const SessionService = {
+const LocalStorageService = {
   set,
   get,
   clear
 };
 
-export default SessionService;
+export default LocalStorageService;
